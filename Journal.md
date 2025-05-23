@@ -9,7 +9,7 @@ My plan is to make a small device that plugs into your phone or computer and the
 - [ ] USB C (if not too expensive)
 - [ ] Programmable (set frequency,gain etc)
 
-## Time Spent Overall: 7 Hours
+## Time Spent Overall: 12 Hours
 
 
 
@@ -42,3 +42,22 @@ Schematic that I made today-
 
 
 ### Time Spent: 5 Hours
+
+# May 22 - PCB Design
+
+Since I am now gonna be soldering the board on my own I decided to use 0805 footprint for the capacitors and resistors. I've also decided to now just source my parts from aliexpress, its more expensive that parts from jlcpcb but hey I'm saving a ton of money by not using PCBA.
+
+Here are some changes I did in my design:
+	- Changed the LDO, now using a MIC5205
+	- Added an ESD protection module on board
+	- Changed up a lot of footprints
+	- Now using a 12Mhz crystal for both the audio chip and USB chip
+
+I made a rough PCB layout to sort of picture how I'm gonna place the components, and I did not like the layout I made
+![Image](https://hc-cdn.hel1.your-objectstorage.com/s/v3/5f6482caa5d6faa68402e135db835452918f18ac_image.png)
+![Image](https://hc-cdn.hel1.your-objectstorage.com/s/v3/4146999fe2c6774e44338c689e3fc09f248009b6_image.png)
+
+As you see in the images above its a pretty 'Chonky' board. Its not even that big its just Chonky and wide which I don't like. Plus there's a lot of empty space on the PCB which means the design can be compacted more. Which is exactly what I'm gonna do.
+
+
+## Time Spent: 5 Hours
