@@ -9,7 +9,7 @@ My plan is to make a small device that plugs into your phone or computer and the
 - [ ] USB C (if not too expensive)
 - [ ] Programmable (set frequency,gain etc)
 
-## Time Spent Overall: 12 Hours
+## Time Spent Overall: 16 Hours
 
 
 
@@ -61,3 +61,17 @@ As you see in the images above its a pretty 'Chonky' board. Its not even that bi
 
 
 ## Time Spent: 5 Hours
+
+# May 23 - Finished Version 1!!
+
+Making a rough PCB layout yesterday really helped me visualize how I was gonna fit everything together on a board. To actually figure out how my new layout should look like I drew a layout on paper (not to scale, just eyeballed the sizes)
+![Image](https://hc-cdn.hel1.your-objectstorage.com/s/v3/e4038826925e8ae1f74b52d0a3f640805a439b97_20250523_205423.jpg)
+
+
+After this I actually started on the new layout, It took quite a while to fit everything properly into a small board. Then after I was finally happy with the layout I started routing traces, the routing was very "sketchy" is basically all I have to say.
+![Image](https://hc-cdn.hel1.your-objectstorage.com/s/v3/1bd92c12cc6bc86c89e2a5cd88386403effdc91f_image.png)
+
+3D Render of the PCB (The 3D models are a bit messed up and not the correct size)
+![Image](https://hc-cdn.hel1.your-objectstorage.com/s/v3/57e2fd79f1e99ef01cc38fb504fde52756f2584d_image.png)
+
+## Time Spent: 4 Hours
