@@ -88,3 +88,6 @@ Looking back at my initial goals I think I pretty much achieved everything I wan
 
 ## Time Spent: 3 Hours
 
+# May 29 - Ordered Parts
+
+Ordered all the components and the PCB today. I also realized that I put the wrong LDO in the BOM but I fixed it and made some minor little changes to the PCB (used 1uF caps for the LDO instead of 22uF).
