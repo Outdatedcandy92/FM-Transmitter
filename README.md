@@ -8,6 +8,11 @@ This project is a compact USB controlled FM transmitter module designed to strea
 
 https://github.com/user-attachments/assets/b6735c28-1eea-4149-aa80-006a72d71160
 
+
+## Code
+Even though this board is plug and play, you can still program it over I2C to change settings on the KT0803 chip.
+The code in `src/code.py` lets you change the output frequency of the chip. To run that code you must first connected the sda and scl pins on the board to any microcontroller that supports micro/circuitpython and that they both are connected to the same device (share the same ground). there is no need to add external pull up resistors as the KT0803 chip already has them inbuilt.
+
 ## Images
 
 ### Schematic

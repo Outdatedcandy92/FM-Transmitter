@@ -9,7 +9,7 @@ My plan is to make a small device that plugs into your phone or computer and the
 - [ ] USB C (if not too expensive)
 - [ ] Programmable (set frequency,gain etc)
 
-## Time Spent Overall: 19 Hours
+## Time Spent Overall: 33 Hours
 
 
 
@@ -91,3 +91,77 @@ Looking back at my initial goals I think I pretty much achieved everything I wan
 # May 29 - Ordered Parts
 
 Ordered all the components and the PCB today. I also realized that I put the wrong LDO in the BOM but I fixed it and made some minor little changes to the PCB (used 1uF caps for the LDO instead of 22uF).
+
+# June 12th - Failed build
+
+All my parts arrived last week and my PCB and stencil arrived today.
+*PRO TIP: when ordering a stencil set a custom size* 
+I went with jlcpcb's default stencil size and didn't think anything about it until today when it finally arrived. :sob:
+*Big Ass Stencil*
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/2d5c2523eff9ebcb2d1d063be917d4f99a00ae7e_20250612_100459.jpg)
+
+---
+
+I setup my workspace and started placing the smd components on the PCB to get it ready for the hotplate.
+
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/11112d9e8d2e04361c720305a557e0d2d0e7ba8b_20250612_192636.jpg)
+
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/fb8811e36cd6882f4b80b504e5af132f886c43ff_20250612_203210.jpg)
+
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/e50d378fbc9470ff589471fc01a687400da225a1_20250612_203217.jpg)
+
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/a3e88bac4afcbec21e82a7aac812c062357198e2_20250612_203659.jpg)
+
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/e7025d2a6f6ba0df318826d74119d7ec76f48d1c_20250612_203702.jpg)
+
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/857ab1608265b670d0a6af4697caed369f6f88a2_20250612_204043.jpg)
+
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/ccff44c4c2023ff1943ec454113c5756a39ee286_20250612_211912.jpg)
+
+
+
+Turns out the PCM chip was actually not connected to any power. I don't know how I even missed that but that really sucks :c. Also there were a lot of solder bridges on the PCM chip, it was SSOP package and the leads were superclose and a few of them bridged without me noticing. All in all I think I probably killed that chip, thankfully I anticipated that something like this would happen and I bought 2 PCM chip.
+
+*Solder Bridges on the PCM2704 Chip*
+
+![image](https://hc-cdn.hel1.your-objectstorage.com/s/v3/6176d4eab8f66091699da0bb19afc15e0d8ca990_1000014107.jpg)
+
+
+## Time Spent: 6 Hours
+
+
+# June 14 - Fixed PCB
+
+I fixed up the PCB and connected the PCM chip to power and ordered the new boards
+
+# June 27 - It Works!!
+
+The updated PCBs arrived today at around 12. I spent about 3 hours soldering everything together, I probably spent about an hour just to apply the solder paste properly ( I had a big stencil so it kinda warps up and the paste gets smudged and  squished almost).
+I also fixed up the remaining solder bridges with my pinecil.
+
+
+*New PCB*
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/3b3ba51e00b223bc1a426eb5232da6c00cfc0fa4_1000014301.jpg)
+
+*The Workspace*
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/0a99918c2e708c0bbe42d3439e3a516b64c9c5fc_1000014306.jpg)
+
+*Assembled Board*
+
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/be5add64a664ecd9ebc193650f8639e5988b3a1d_1000014308.jpg)
+
+
+I spent about 30 minutes with my multimeter checking if anything was shorted, thankfully it was all good. I plugged it into my computer and neither my computer or the chip blew up, which was a really good thing.
+Windows detected a USB device but it could not get a device descriptor which was a problem. I spent about an hour at least trying to figure out what it was, scouring through Ti forums and the web. 
+All sources said that its mostly likely an oscillator problem and it was!
+apparently the oscillator was not working at all when I checked it using my oscilloscope, I was kinda lost, I though maybe it was a load capacitance issue, but that wouldn't make the oscillator just straight up not work.
+After a lot of troubleshooting I found out I had actually placed the crystal in the wrong orientation, the crystal and its footprint were a bit different which caused this issue, I rotated the crystal 90 degrees and then it finally worked! 
+
+
+The board was being detected as a DAC by my computer and was showing up as an audio output. I played music on my computer and then used my Baofeng UV-5 to listen to it on 86Mhz and it worked!!
+Sound quality was really decent, almost sounds like what you'd hear on the radio, sounded a bit dry but maybe that's because of my Baofeng's speaker.
+
+I played around with it a bit and then decided to set a different frequency by writing to its register. I wired up the board to my raspberry pi pico, shared the ground and 5v and then wrote a code that changed its frequency to 106.5Mhz, the code successfully wrote the new values to the designated registers but there was a tiny problem, these values were not saved on power off, so you essentially had to write to the chip every time it starts, I could unfortunately not test out the board on 106.5Mhz today but I will try again tomorrow.
+
+## Time Spent: 8 Hours
+
