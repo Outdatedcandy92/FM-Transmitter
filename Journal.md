@@ -6,10 +6,9 @@ My plan is to make a small device that plugs into your phone or computer and the
 - [ ] Low Cost PCB
 - [ ] Tiny USB Drive form factor
 - [ ] 1-2 Meters of Range
-- [ ] USB C (if not too expensive)
 - [ ] Programmable (set frequency,gain etc)
 
-## Time Spent Overall: 33 Hours
+## Time Spent Overall: 48 Hours
 
 
 
@@ -165,3 +164,71 @@ I played around with it a bit and then decided to set a different frequency by w
 
 ## Time Spent: 8 Hours
 
+# June 28th - I2C working
+
+I finally got I2C working on the board, it turns out it already has inbuilt pull ups and I did not need add them externally on the breadboard. I connected the sda and scl pins to the pico and vibecoded a program that lets you enter a FM frequency and it then writes to the appropriate registers to set it to that frequency.
+The 2.4ghz antenna was pretty decent but was not strong enough to  override existing FM broadcast signals, I touched the tip of the antenna on my breadboard power rails and viola! the breadboard is now an antenna and its strong enough to override FM broadcast signals in at least 5m radius.
+
+## Time Spent: 3 Hours
+
+# July 20th - V2
+
+I started working on a new version of the FM Transmitter, this time I wanted to have a MCU on board so that I can directly talk over serial to the MCU and it would then forward that and talk over I2C with the transmitter chip.
+I spent most of my mine today just researching what chips to use for the MCU, I needed something small and something that didn't require a lot of passives. After some research I found the CH552 but it was kind of problematic as it had a weird toolchain and the datasheet was in all chinese, so instead I opted to go for the EFM8UBIOF8G from silicon labs, its a small OFN20 board and only requires like 4 decoupling capacitors to work.
+
+## Time Spent: 2 Hours
+
+# July 21 - Finished V2 Schematics 
+
+I finished up my schematics today, added a USB hub and configured it to have two downstream ports — one for the USB DAC and another for my MCU. I also wanted to have some status leds and a button to control the frequency on board. 
+Since its the full FM Band (86.0-108.0Mhz) that's around 220 values (assuming .1f), displaying 220 different values in base 10 is well uhh... hard to do on a board using leds. Instead of base 10 I decided to go with base 2 or binary, this way I only need 8 leds to display 256 different values. I ran into another problem though, my MCU did not have 8 free pins, but the fix was pretty easy for this, I just wired the leds in a 2x4 matrix that way I only need to use 6 GPIOs and only 2 resistors (instead of 8). This will probably complicate the firmware a bit but that's a problem for another day.
+
+*Schematics*
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/bab539035a9bd1b6210758ef01cac133cdb8d752_image.png)
+
+
+## Time Spent: 4 Hours
+
+# July 22nd - Finished V2 PCB
+
+Finished laying out and routing the new PCB, I went with 0402s this time and oh my god, they saved up so much space, I had so much free real estate on my board now, I added my USB hub and my MCU and I still had free space, I reduced my board length from 50mm to 48mm, I could compress it even further but I was like why bother.
+I also went with a 4 layer design because I'm going to assemble it myself and the cost difference is like $2. 
+The 4 layer stackup went like this -
+
+Top - components+signal+ground pour
+Inner 1 - Solid ground plane
+Inner 2 - Chonky power traces + ground pour
+Bottom - Signal + ground pour
+
+I don't know if too much ground pour is ever a problem but I guess we'll find out when I try to assemble it.
+
+
+*Updated PCB*
+
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/2712bb6f88521aad7c34d93d1d8f204ea85baed2_image.png)
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/d62555e20ced46b8e19a24b6f985fd6f2e1291dc_image.png)
+
+
+## Time Spent: 3 Hours
+
+# July 23rd - Fixing Errors
+
+I posted this board on  r/printedcircuitboard and someone mentioned that I wired up my ESD protection diode the wrong way, my vbus was actually shorting to ground. I fixed that up real quick and rewired it properly, I also just rotate my antenna ufl seat 90 deg clockwise so its just at a better position.
+
+
+*Updated Schematics*
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/9fcd49b9af1b454965686a87725e1bce2197ca0d_image.png)
+*Updated PCB*
+![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/b7343d63923e5205ae6a3d2120f17268a7b068ea_image.png)
+
+
+I also worked on creating the BOM for this project, and finding appropriate parts on lcsc for it. I made sure to pick correct parts this time (I picked up a crystal with a weird pinout last time and it threw me off).
+
+## Time Spent: 2 Hours
+
+# July 24th - Finishing Up
+
+Worked on assigning components on lcsc for this project, I could find almost everything except for the Silicon Labs MCU, I unfortunately had to use Digikey for that. 
+Also worked up on updating the github repo with all the update designs, screenshots , readme and more.
+
+## Time Spent: 3 Hours
