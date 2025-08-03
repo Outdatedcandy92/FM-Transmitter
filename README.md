@@ -5,7 +5,7 @@ This project is a compact USB controlled FM transmitter module designed to strea
 *V2 pcb*
 ![image](https://hc-cdn.hel1.your-objectstorage.com/s/v3/da5789aecfb35969c07a151e8e7cfbb73c472d54_image.png)
 
-## Demo
+## V1 Demo
 
 https://github.com/user-attachments/assets/b6735c28-1eea-4149-aa80-006a72d71160
 
