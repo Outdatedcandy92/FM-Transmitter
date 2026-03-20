@@ -1,5 +1,7 @@
 # USB FM Transmitter
 
+## Some images in this journal are unavailable due to a CDN issue, and I don’t have backups. This only affects older entries and does not impact the main project files or build instructions.
+
 ## What am I making?
 My plan is to make a small device that plugs into your phone or computer and then can stream audio from that computer over FM over a short distance (1-2 meters) essentially allowing you to create your own mini radio station. Devices like these already exist and are mainly used to stream songs from your own device over to the car radio. My goal with this project is to create something similar and make it as plug and play as possible.
 ### Goals for this project
