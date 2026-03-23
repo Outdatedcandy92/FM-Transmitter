@@ -2,7 +2,7 @@
 
 This project is a compact USB controlled FM transmitter module designed to stream and transmit audio directly from your computer to a FM band. This is a plug and play module and will work without installing any drivers or running any custom commands. Just simply plug it into your PC and start transmitting audio. This project uses the PCM2704 to receive audio from the host device and sends it off to the KT0803L chip to transmit over FM band. There are test pads on the board for the PCM2704 chips HID controls such as Mute, Volume Up/Down and Suspend. There is also a connector on board for communicating over I2C with the KT0803L. You can use I2C to change KT0803L's Transmitting Frequency, calibration parameters, operation statues, mode and power controller. 
 
-![[attachments/20250627_203439.jpg]]
+![](attachments/20250627_203439.jpg)
 ## V1 Demo
 
 https://github.com/user-attachments/assets/b6735c28-1eea-4149-aa80-006a72d71160
@@ -16,14 +16,14 @@ The code in `src/code.py` lets you change the output frequency of the chip. To r
 
 ### Schematic
 
-![[attachments/zen_QrhJHNvp3r.png]]
+![](attachments/zen_QrhJHNvp3r.png)
 ### PCB
 
-![[attachments/zen_INPOopee6o.png]]
+![](attachments/zen_INPOopee6o.png)
 
 ### 3D 
 
-![[attachments/zen_fVa9baPrbY.png]]
+![](attachments/zen_fVa9baPrbY.png)
 
 
 # V2!!
@@ -32,20 +32,20 @@ Version 2 of this board includes an onboard USB hub and MCU that way you no long
 
 	V2 has been assembled and tested. Although I have not yet had the chance to write firmware for the Silicon Labs Chip. If you want to make your own I would recommend using a different MCU (like an STM32) as its easier to bringup.
 
-![[attachments/20260102_131213.png]]
+![](attachments/20260102_131213.png)
 
 
 ### Schematic
 
-![[attachments/zen_RgUCC1Kti3.png]]
+![](attachments/zen_RgUCC1Kti3.png)
 
 ### PCB
 
-![[attachments/zen_ev1RDEKy1a.png]]
+![](attachments/zen_ev1RDEKy1a.png)
 
 ### 3D
 
-![[attachments/zen_EJJ06B7tOy.png]]
+![](attachments/zen_EJJ06B7tOy.png)
 
 
 
